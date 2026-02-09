@@ -35,9 +35,15 @@ static void	ft_tri_three(int **a, int size)
 	int	s;
 
 	if (size < 2 || ft_is_sorted(a, size))
+	{
+		free(a);
 		return ;
+	}
 	if (size == 2)
-		return (ft_sa(a, size));
+		{
+			free(a);
+			return (ft_sa(a, size));
+		}
 	f = (*a)[0];
 	s = (*a)[1];
 	if (f > s && s < (*a)[2] && f < (*a)[2])
@@ -92,14 +98,10 @@ void	ft_tri(int *a, int size)
 	int	size_b;
 
 	size_b = 0;
-	if (size == 2 && a[0] > a[1])
-	{
-		ft_sa(&a, size);
-		return ;
-	}
 	if (size == 3)
 	{
 		ft_tri_three(&a, size);
+		free(a);
 		return ;
 	}
 	b = malloc(sizeof(int) * size);

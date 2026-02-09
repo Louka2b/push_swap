@@ -1,39 +1,40 @@
-NAME        = push_swap
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -g
-RM          = rm -f
-LIBFT_DIR   = libft
-LIBFT       = $(LIBFT_DIR)/libft.a
-SRCS        = main.c \
-              ft_parsing.c \
-              ft_index.c \
-              ft_swap.c \
-              ft_push.c \
-              ft_rota.c \
-              ft_rrota.c \
-              ft_tri.c
+NAME = push_swap
 
-OBJS        = $(SRCS:.c=.o)
+LIBFT = libft
 
-all: $(LIBFT) $(NAME)
+MAIN = main.c
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
+SRCS_PS =	ft_parsing.c \
+        	ft_index.c \
+            ft_swap.c \
+            ft_push.c \
+            ft_rota.c \
+            ft_rrota.c \
+            ft_tri.c
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT_DIR) -lft -o $(NAME)
+OBJ_PS = $(SRCS_PS:%.c=%.o)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -I$(LIBFT_DIR) -c $< -o $@
+CFLAGS = -Wall -Wextra -Werror -g
 
-clean:
-	$(RM) $(OBJS)
-	$(MAKE) -C $(LIBFT_DIR) clean
+all : $(NAME) 
+
+$(NAME): makelib
+	cc $(CFLAGS) $(MAIN) $(NAME).a -o $(NAME)
+
+makelib: $(OBJ_PS) 
+	$(MAKE) -C $(LIBFT) all
+	cp libft/libft.a $(NAME).a
+	ar rcs $(NAME).a $(OBJ_PS)
+
+clean:  
+	rm -f $(OBJ_PS)
+	$(MAKE) -C $(LIBFT) clean
 
 fclean: clean
-	$(RM) $(NAME)
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT) fclean
 
-re: fclean all
+re: fclean clean all 
+	$(MAKE) -C $(LIBFT) re
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re makelib

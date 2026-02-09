@@ -29,7 +29,7 @@ static void	ft_sort_more(int **a, int size, int f, int s)
 	}
 }
 
-static void	ft_tri_three(int **a, int size)
+void	ft_tri_three(int **a, int size)
 {
 	int	f;
 	int	s;
@@ -40,10 +40,10 @@ static void	ft_tri_three(int **a, int size)
 		return ;
 	}
 	if (size == 2)
-		{
-			free(a);
-			return (ft_sa(a, size));
-		}
+	{
+		free(a);
+		return (ft_sa(a, size));
+	}
 	f = (*a)[0];
 	s = (*a)[1];
 	if (f > s && s < (*a)[2] && f < (*a)[2])
@@ -105,6 +105,13 @@ void	ft_tri(int *a, int size)
 		return ;
 	}
 	b = malloc(sizeof(int) * size);
+	if (size == 5)
+	{
+		sort_five(&a, &b, size, &size_b);
+		free(a);
+		free(b);
+		return ;
+	}
 	ft_radix(&a, &b, &size, &size_b);
 	free(b);
 	free(a);

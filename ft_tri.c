@@ -46,7 +46,7 @@ void	ft_tri_three(int **a, int size)
 	}
 	f = (*a)[0];
 	s = (*a)[1];
-	if (f > s && s < (*a)[2] && f < (*a)[2])
+	if (s < (*a)[2] && f < (*a)[2])
 		ft_sa(a, size);
 	else if (f > s && s < (*a)[2] && f > (*a)[2])
 		ft_ra(a, size);

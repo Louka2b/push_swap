@@ -10,7 +10,8 @@ SRCS_PS =	ft_parsing.c \
             ft_push.c \
             ft_rota.c \
             ft_rrota.c \
-            ft_tri.c
+            ft_tri.c \
+			sort_five.c
 
 OBJ_PS = $(SRCS_PS:%.c=%.o)
 

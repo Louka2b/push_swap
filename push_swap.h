@@ -34,7 +34,6 @@ void	ft_index(int **a, int size);
 void	ft_tri(int *a, int size);
 void	ft_tri_three(int **a, int size);
 int		*ft_parse_to_int(char **args, int size);
-int		get_min(int *stack, int size, int target);
 int		ft_is_sorted(int **a, int size);
 
 #endif

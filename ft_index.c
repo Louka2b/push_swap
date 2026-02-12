@@ -2,26 +2,22 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_index.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2026/01/09 12:31:38 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/01/09 12:31:38 by ldeplace         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/02/12 15:57:53 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/02/12 15:57:53 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
 void	ft_index(int **a, int size)
 {
-	int i;
-	int j;
-	int count;
-	int *tmp_tab;
+	int	i;
+	int	j;
+	int	count;
+	int	*tmp_tab;
 
 	tmp_tab = malloc(sizeof(int) * size);
 	if (!tmp_tab)
@@ -46,7 +42,7 @@ void	ft_index(int **a, int size)
 
 int	get_min(int *stack, int size, int target)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)
@@ -57,5 +53,3 @@ int	get_min(int *stack, int size, int target)
 	}
 	return (0);
 }
-
-

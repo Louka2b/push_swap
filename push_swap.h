@@ -28,7 +28,7 @@ void	ft_rb(int **b, int size);
 void	ft_ra(int **a, int size);
 void	ft_rra(int **a, int size);
 void	ft_rrb(int **b, int size);
-void	sort_five(int **a, int **b, int size_a, int *size_b);
+void	sort_five(int **a, int **b, int *size_a, int *size_b);
 void	ft_rrr(int **a, int **b, int size_a, int size_b);
 void	ft_index(int **a, int size);
 void	ft_tri(int *a, int size);

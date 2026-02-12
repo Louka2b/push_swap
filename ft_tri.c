@@ -12,48 +12,31 @@
 
 #include "push_swap.h"
 
-static void	ft_sort_more(int **a, int size, int f, int s)
-{
-	int	t;
-
-	t = (*a)[2];
-	if (f > s && s > t)
-	{
-		ft_sa(a, size);
-		ft_rra(a, size);
-	}
-	else if (f < s && s > t && f < t)
-	{
-		ft_sa(a, size);
-		ft_ra(a, size);
-	}
-}
-
 void	ft_tri_three(int **a, int size)
 {
-	int	f;
-	int	s;
+	int	first;
+	int	second;
+	int	third;
 
-	if (size < 2 || ft_is_sorted(a, size))
-	{
-		free(a);
-		return ;
-	}
-	if (size == 2)
-	{
-		free(a);
-		return (ft_sa(a, size));
-	}
-	f = (*a)[0];
-	s = (*a)[1];
-	if (s < (*a)[2] && f < (*a)[2])
+	third = (*a)[2];
+	first = (*a)[0];
+	second = (*a)[1];
+	if (first > second && second < third && first < third)
 		ft_sa(a, size);
-	else if (f > s && s < (*a)[2] && f > (*a)[2])
-		ft_ra(a, size);
-	else if (f < s && s > (*a)[2] && f > (*a)[2])
+	else if (first > second && second > third)
+	{
+		ft_sa(a, size);
 		ft_rra(a, size);
-	else
-		ft_sort_more(a, size, f, s);
+	}
+	else if (first > second && second < third && first > third)
+		ft_ra(a, size);
+	else if (first < second && second > third && first < third)
+	{
+		ft_sa(a, size);
+		ft_ra(a, size);
+	}
+	else if (first < second && second > third && first > third)
+		ft_rra(a, size);
 }
 
 static void	ft_ini(int *max, int *bit, int *i, int *size_a)
@@ -107,7 +90,7 @@ void	ft_tri(int *a, int size)
 	b = malloc(sizeof(int) * size);
 	if (size == 5)
 	{
-		sort_five(&a, &b, size, &size_b);
+		sort_five(&a, &b, &size, &size_b);
 		free(a);
 		free(b);
 		return ;

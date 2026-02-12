@@ -5,67 +5,59 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/12 14:54:45 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/02/12 14:59:33 by ldeplace         ###   ########.fr       */
+/*   Created: 2026/02/12 15:16:00 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/02/12 15:19:18 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	get_min(int *stack, int size, int target)
+static int	get_min_val(int *stack, int size)
 {
 	int	min;
 	int	i;
 
-	if (size <= 0)
-		return (0);
 	min = stack[0];
-	i = 0;
+	i = 1;
 	while (i < size)
 	{
-		if (stack[i] < min && stack[i] != target)
+		if (stack[i] < min)
 			min = stack[i];
 		i++;
 	}
 	return (min);
 }
 
-static void	move_to_top(int **stack, int size, int value)
+static void	move_to_top(int **a, int size, int val)
 {
-	int	position;
+	int	pos;
 
-	while ((*stack)[0] != value)
+	pos = 0;
+	while (pos < size && (*a)[pos] != val)
+		pos++;
+	if (pos <= size / 2)
 	{
-		position = 0;
-		while (position < size && (*stack)[position] != value)
-			position++;
-		if (position <= size / 2)
-			ft_ra(stack, size);
-		else
-			ft_rra(stack, size);
+		while ((*a)[0] != val)
+			ft_ra(a, size);
+	}
+	else
+	{
+		while ((*a)[0] != val)
+			ft_rra(a, size);
 	}
 }
 
-
-
-void	sort_five(int **a, int **b, int size_a, int *size_b)
+void	sort_five(int **a, int **b, int *size_a, int *size_b)
 {
-	int	*size;
-	int	min1;
-	int	min2;
+	int	min;
 
-	size = malloc(2 * sizeof(int));
-	size[0] = size_a;
-	size[1] = *size_b;
-	min1 = get_min(*a, size[0], -1);
-	min2 = get_min(*a, size[0], min1);
-	move_to_top(a, size[0], min1);
-	ft_pb(a, b, &size[0], &size[1]);
-	move_to_top(a, size[0], min2);
-	ft_pb(a, b, &size[0], &size[1]);
-	ft_tri_three(a, size[0]);
-	ft_pa(a, b, &size[0], &size[1]);
-	ft_pa(a, b, &size[0], &size[1]);
-	free(size);
+	while (*size_a > 3)
+	{
+		min = get_min_val(*a, *size_a);
+		move_to_top(a, *size_a, min);
+		ft_pb(a, b, size_a, size_b);
+	}
+	ft_tri_three(a, *size_a);
+	while (*size_b > 0)
+		ft_pa(a, b, size_a, size_b);
 }
-

@@ -14,39 +14,48 @@
 
 void	ft_sa(int **a, int size)
 {
-	int	i;
+	int	tmp;
 
 	if (size < 2)
 		return ;
-	i = (*a)[0];
-	(*a)[0] = (*a[1]);
-	(*a)[1] = i;
+	tmp = (*a)[0];
+	(*a)[0] = (*a)[1];
+	(*a)[1] = tmp;
 	write(1, "sa\n", 3);
 }
 
 void	ft_sb(int **b, int size)
 {
-	int	i;
+	int	tmp;
 
 	if (size < 2)
 		return ;
-	i = (*b)[0];
-	(*b)[0] = (*b[1]);
-	(*b)[1] = i;
+	tmp = (*b)[0];
+	(*b)[0] = (*b)[1];
+	(*b)[1] = tmp;
 	write(1, "sb\n", 3);
 }
 
 void	ft_ss(int **a, int **b, int size_a, int size_b)
 {
-	int	i;
+	int	tmp;
+	int	executed;
 
-	if (size_b < 2 || size_a < 0)
-		return ;
-	i = (*b)[0];
-	(*b)[0] = (*b[1]);
-	(*b)[1] = i;
-	i = (*a)[0];
-	(*a)[0] = (*a[1]);
-	(*a)[1] = i;
-	write(1, "ss\n", 3);
+	executed = 0;
+	if (size_a >= 2)
+	{
+		tmp = (*a)[0];
+		(*a)[0] = (*a)[1];
+		(*a)[1] = tmp;
+		executed = 1;
+	}
+	if (size_b >= 2)
+	{
+		tmp = (*b)[0];
+		(*b)[0] = (*b)[1];
+		(*b)[1] = tmp;
+		executed = 1;
+	}
+	if (executed)
+		write(1, "ss\n", 3);
 }
